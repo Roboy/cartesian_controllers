@@ -1,0 +1,306 @@
+head_cartesian_motion_controller:
+    type: "position_controllers/CartesianMotionController"
+    end_effector_link: "head"
+    robot_base_link: "torso"
+    target_frame_topic: "target_frame"
+    joints:
+      - head_axis0
+      - head_axis1
+      - head_axis2
+    pd_gains:
+        trans_x: {p: 10.0}
+        trans_y: {p: 10.0}
+        trans_z: {p: 10.0}
+        rot_x: {p: 1.0}
+        rot_y: {p: 1.0}
+        rot_z: {p: 1.0}
+
+hand_right_cartesian_motion_controller:
+    type: "position_controllers/CartesianMotionController"
+    end_effector_link: "hand_right"
+    robot_base_link: "torso"
+    target_frame_topic: "target_frame"
+    joints:
+      - shoulder_right_axis0
+      - shoulder_right_axis1
+      - shoulder_right_axis2
+      - wrist_right_axis0
+      - wrist_right_axis1
+      - wrist_right_axis2
+      - elbow_right_axis1
+      - elbow_right_axis0
+    pd_gains:
+        trans_x: {p: 10.0}
+        trans_y: {p: 10.0}
+        trans_z: {p: 10.0}
+        rot_x: {p: 1.0}
+        rot_y: {p: 1.0}
+        rot_z: {p: 1.0}
+
+hand_left_cartesian_motion_controller:
+    type: "position_controllers/CartesianMotionController"
+    end_effector_link: "hand_left"
+    robot_base_link: "torso"
+    target_frame_topic: "target_frame"
+    joints:
+      - wrist_left_axis0
+      - wrist_left_axis1
+      - wrist_left_axis2
+      - shoulder_left_axis0
+      - shoulder_left_axis1
+      - shoulder_left_axis2
+      - elbow_left_axis0
+      - elbow_left_axis1
+    pd_gains:
+        trans_x: {p: 10.0}
+        trans_y: {p: 10.0}
+        trans_z: {p: 10.0}
+        rot_x: {p: 1.0}
+        rot_y: {p: 1.0}
+        rot_z: {p: 1.0}
+
+hand_right_motion_control_handle:
+    type: "cartesian_controllers/MotionControlHandle"
+    end_effector_link: "hand_right"
+    robot_base_link: "torso"
+    target_frame_topic: "target_frame"
+    joints:
+      - shoulder_right_axis0
+      - shoulder_right_axis1
+      - shoulder_right_axis2
+      - wrist_right_axis0
+      - wrist_right_axis1
+      - wrist_right_axis2
+      - elbow_right_axis1
+      - elbow_right_axis0
+
+hand_left_motion_control_handle:
+    type: "cartesian_controllers/MotionControlHandle"
+    end_effector_link: "hand_left"
+    robot_base_link: "torso"
+    target_frame_topic: "target_frame"
+    joints:
+      - wrist_left_axis0
+      - wrist_left_axis1
+      - wrist_left_axis2
+      - shoulder_left_axis0
+      - shoulder_left_axis1
+      - shoulder_left_axis2
+      - elbow_left_axis0
+      - elbow_left_axis1
+
+head_motion_control_handle:
+    type: "cartesian_controllers/MotionControlHandle"
+    end_effector_link: "head"
+    robot_base_link: "torso"
+    target_frame_topic: "target_frame"
+    joints:
+      - head_axis0
+      - head_axis1
+      - head_axis2
+
+hand_left_joint_to_cartesian_controller:
+    type: "cartesian_controllers/JointControllerAdapter"
+    end_effector_link: "hand_left"
+    robot_base_link: "torso"
+    target_frame_topic: "/hand_left_cartesian_motion_controller/target_frame"
+    joints:
+      - wrist_left_axis0
+      - wrist_left_axis1
+      - wrist_left_axis2
+      - shoulder_left_axis0
+      - shoulder_left_axis1
+      - shoulder_left_axis2
+      - elbow_left_axis0
+      - elbow_left_axis1
+
+    joint_limits:
+      shoulder_left_axis0:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      shoulder_left_axis1:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      shoulder_left_axis2:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      elbow_left_axis1:
+        has_velocity_limits: true
+        max_velocity: 3.2
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      elbow_left_axis0:
+        has_velocity_limits: true
+        max_velocity: 3.2
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      wrist_left_axis0:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      wrist_left_axis1:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      wrist_left_axis2:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      wrist_right_axis0:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+
+hand_right_joint_to_cartesian_controller:
+    type: "cartesian_controllers/JointControllerAdapter"
+    end_effector_link: "hand_right"
+    robot_base_link: "torso"
+    target_frame_topic: "/hand_right_cartesian_motion_controller/target_frame"
+    joints:
+      - shoulder_right_axis0
+      - shoulder_right_axis1
+      - shoulder_right_axis2
+      - wrist_right_axis0
+      - wrist_right_axis1
+      - wrist_right_axis2
+      - elbow_right_axis1
+      - elbow_right_axis0
+
+    joint_limits:
+      shoulder_right_axis0:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      shoulder_right_axis1:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      shoulder_right_axis2:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      elbow_right_axis1:
+        has_velocity_limits: true
+        max_velocity: 3.2
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      elbow_right_axis1:
+        has_velocity_limits: true
+        max_velocity: 3.2
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      wrist_right_axis0:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      wrist_right_axis1:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      wrist_right_axis2:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+
+hand_right_joint_to_cartesian_controller:
+    type: "cartesian_controllers/JointControllerAdapter"
+    end_effector_link: "head"
+    robot_base_link: "torso"
+    target_frame_topic: "/head_cartesian_motion_controller/target_frame"
+    joints:
+      - head_axis0
+      - head_axis1
+      - head_axis2
+
+    joint_limits:
+      head_axis0:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      head_axis1:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+      head_axis2:
+        has_velocity_limits: true
+        max_velocity: 3.15
+        has_acceleration_limits: true
+        max_acceleration: 10.0
+
+
+hand_right_joint_to_cartesian_controller/joint_trajectory_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - shoulder_right_axis0
+      - shoulder_right_axis1
+      - shoulder_right_axis2
+      - wrist_right_axis0
+      - wrist_right_axis1
+      - wrist_right_axis2
+      - elbow_right_axis1
+      - elbow_right_axis0
+
+
+hand_left_joint_to_cartesian_controller/joint_trajectory_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - wrist_left_axis0
+      - wrist_left_axis1
+      - wrist_left_axis2
+      - shoulder_left_axis0
+      - shoulder_left_axis1
+      - shoulder_left_axis2
+      - elbow_left_axis0
+      - elbow_left_axis1
+
+head_joint_to_cartesian_controller/joint_trajectory_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - head_axis0
+      - head_axis1
+      - head_axis2
+
+joint_trajectory_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - shoulder_right_axis0
+      - shoulder_right_axis1
+      - shoulder_right_axis2
+      - wrist_right_axis0
+      - wrist_right_axis1
+      - wrist_right_axis2
+      - elbow_right_axis1
+      - elbow_right_axis0
+      - wrist_left_axis0
+      - wrist_left_axis1
+      - wrist_left_axis2
+      - shoulder_left_axis0
+      - shoulder_left_axis1
+      - shoulder_left_axis2
+      - elbow_left_axis0
+      - elbow_left_axis1
+      - head_axis0
+      - head_axis1
+      - head_axis2
+
+joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50

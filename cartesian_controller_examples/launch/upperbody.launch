@@ -1,14 +1,15 @@
 <launch>
         <!-- Load robot_description to parameter server -->
-        <param name="/robot_description"
-        command="$(find xacro)/xacro --inorder '$(find cartesian_controller_examples)/urdf/robot.urdf.xacro'" />
-
+        <param name="/robot_description" textfile="$(find robots)/upper_body/model.urdf" />
+        <!-- <param name="/robot_description"
+        command="$(find xacro)/xacro inorder '$(find cartesian_controller_examples)/urdf/robot.urdf.xacro'" />
+ -->
         <!-- Load hardware configuration -->
-        <rosparam file="$(find cartesian_controller_examples)/config/example_hw_config.yaml" command="load"></rosparam>
+        <rosparam file="$(find cartesian_controller_examples)/config/upperbody_hw_config.yaml" command="load"></rosparam>
 
         <!-- Load hardware interface -->
         <node name="sim_hardware_interface" pkg="ros_control_boilerplate" type="sim_hw_main"
-        output="screen" respawn="false" />
+        output="screen" />
 
         <!-- Robot state publisher -->
         <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
@@ -20,26 +21,32 @@
         <node name="joint_state_controller_spawner" pkg="controller_manager" type="spawner" args="joint_state_controller" respawn="false" output="screen"/>
 
         <!-- Load controller configuration -->
-        <rosparam file="$(find cartesian_controller_examples)/config/example_controllers.yaml" command="load"></rosparam>
+        <rosparam file="$(find cartesian_controller_examples)/config/upperbody_controllers.yaml" command="load"></rosparam>
 
         <!-- Spawn controllers -->
         <node name="controller_spawner" pkg="controller_manager" type="spawner"
                 args="--stopped
-                my_cartesian_motion_controller
-                my_motion_control_handle
-                my_joint_to_cartesian_controller
+                hand_right_cartesian_motion_controller
+                hand_right_motion_control_handle
+                head_motion_control_handle
+                head_cartesian_motion_controller
+                hand_left_cartesian_motion_controller
+                hand_left_motion_control_handle
+                hand_left_joint_to_cartesian_controller
+                hand_right_joint_to_cartesian_controller
+                head_joint_to_cartesian_controller
                 joint_trajectory_controller
                 "
         />
 
         <!-- Spawn joint controller for testing my_joint_to_cartesian_controller  -->
         <!-- Note: This controller should be loaded and started -->
-        <!-- <group ns="my_joint_to_cartesian_controller" >
+        <group ns="my_joint_to_cartesian_controller" >
                 <node name="controller_spawner" pkg="controller_manager" type="spawner" args="joint_trajectory_controller" />
-        </group> -->
+        </group>
 
         <!-- Visualization -->
-        <!-- <arg name="my_rviz" value="-d $(find cartesian_controller_examples)/etc/examples.rviz" />
+        <arg name="my_rviz" value="-d $(find cartesian_controller_examples)/etc/examples.rviz" />
         <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="$(arg my_rviz)" output="screen" >
-        </node> -->
+        </node>
 </launch>

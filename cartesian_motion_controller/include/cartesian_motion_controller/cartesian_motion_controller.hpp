@@ -190,6 +190,10 @@ targetFrameCallback(const geometry_msgs::PoseStamped& target)
     return;
   }
 
+  m_current_frame = Base::m_forward_dynamics_solver.getEndEffectorPose();
+
+
+
   m_target_frame = KDL::Frame(
       KDL::Rotation::Quaternion(
         target.pose.orientation.x,
@@ -197,9 +201,9 @@ targetFrameCallback(const geometry_msgs::PoseStamped& target)
         target.pose.orientation.z,
         target.pose.orientation.w),
       KDL::Vector(
-        target.pose.position.x,
-        target.pose.position.y,
-        target.pose.position.z));
+        m_current_frame.p.x() + target.pose.position.x,
+        m_current_frame.p.x() + target.pose.position.y,
+        m_current_frame.p.x() + target.pose.position.z));
 }
 
 } // namespace

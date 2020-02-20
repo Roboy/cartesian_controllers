@@ -218,7 +218,7 @@ hand_right_joint_to_cartesian_controller:
         has_acceleration_limits: true
         max_acceleration: 10.0
 
-hand_right_joint_to_cartesian_controller:
+head_joint_to_cartesian_controller:
     type: "cartesian_controllers/JointControllerAdapter"
     end_effector_link: "head"
     robot_base_link: "torso"
@@ -243,7 +243,7 @@ hand_right_joint_to_cartesian_controller:
         has_velocity_limits: true
         max_velocity: 3.15
         has_acceleration_limits: true
-        max_acceleration: 10.0
+        max_acceleration: 10.0        
 
 
 hand_right_joint_to_cartesian_controller/joint_trajectory_controller:

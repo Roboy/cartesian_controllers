@@ -34,12 +34,12 @@
 
         <!-- Spawn joint controller for testing my_joint_to_cartesian_controller  -->
         <!-- Note: This controller should be loaded and started -->
-        <!-- <group ns="my_joint_to_cartesian_controller" >
+        <group ns="my_joint_to_cartesian_controller" >
                 <node name="controller_spawner" pkg="controller_manager" type="spawner" args="joint_trajectory_controller" />
-        </group> -->
+        </group>
 
         <!-- Visualization -->
-        <!-- <arg name="my_rviz" value="-d $(find cartesian_controller_examples)/etc/examples.rviz" />
+        <arg name="my_rviz" value="-d $(find cartesian_controller_examples)/etc/examples.rviz" />
         <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="$(arg my_rviz)" output="screen" >
-        </node> -->
+        </node>
 </launch>
